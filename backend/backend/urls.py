@@ -10,5 +10,7 @@ urlpatterns = [
     path("sitemap/", views.sitemap),
     path("company_profile/", views.company_profile),
     path("get-hired/", views.get_hired),
-    path("register-company", views.register_company)
+    path("register-company/", views.register_company),
+    path("register-company/register/", views.register_handler),
+    path("recruiter-dashboard", views.recruiter_dashboard)
 ]

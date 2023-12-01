@@ -137,3 +137,14 @@ class Freelancer(models.Model):
     def get_absolute_url(self):
         return reverse("freelancer_detail", kwargs={"pk": self.pk})
     
+
+class Company(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    desc = models.TextField()
+    founded_date = models.IntegerField()
+    ceo = models.CharField(max_length=50)
+    hq = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
