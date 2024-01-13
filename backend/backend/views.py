@@ -1,8 +1,10 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
-from Project.models import Company
+from Project.models import Company, SeekerDetail
 from django.contrib.auth.models import User
-
+from Project.models import SeekerDetail
+from django.shortcuts import redirect
+from .forms import DocumentForm
 def home(req:HttpRequest):
     if req.method == "GET":
         print(req.user)
@@ -50,7 +52,27 @@ def register_handler(req: HttpRequest):
         return HttpResponse("Company registered sucessfully")
 
 def recruiter_dashboard(req: HttpRequest):
-    users = list(User.objects.filter(is_superuser=False))
-    # users = list(User.objects.all())
-    print(users)
-    return render(req, "recruiter_dashboard.html", {"user_list": users})
+    if req.user.is_authenticated:
+
+        users = list(SeekerDetail.objects.all())
+        # print(users)
+        # users = list(User.objects.all())
+        # print(users)
+        return render(req, "recruiter_dashboard.html", {"user_list": users})
+    else:
+        return HttpResponse("not signed in")
+
+def hire(req: HttpRequest):
+    # print(req.body)
+    name = req.POST.get('name')
+    email = req.POST.get('email')
+    phno = req.POST.get('phno')
+    resume = req.POST.get("resume")
+
+    print(resume)
+    print(name, email, phno, resume)
+    seeker = SeekerDetail.objects.create(name=name, email=email, phno=phno, resume=resume)
+    seeker.save()
+
+    return redirect("/recruiter-dashboard")
+

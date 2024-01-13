@@ -21,29 +21,31 @@
 
             <h1 style="text-align: center;">Get Hired??</h1>
             <div class="wrapper" style="padding: 1em; background-color: rgba(0, 0, 0, .3);">
-                <form style="color: wheat;">
+                <form style="color: wheat;" method="post" action="/get-hired/hire_handler" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Name:</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter name">
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           name="name" placeholder="Enter name">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email">
+                           name="email" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Phone Number:</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter Phone Number">
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           name="phno" placeholder="Enter Phone Number">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">resume: </label>
-                        <input type="file" class="form-control" id="exampleInputEmail1">
+                        <input type="file" name="resume" class="form-control" id="exampleInputEmail1">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
+
+            {{form.as_p}}
         </div>
     </div>
 

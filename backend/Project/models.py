@@ -6,21 +6,21 @@ from django.contrib.auth.models import User
 
 
 # project table
-# class Project(models.Model):
-#     project_title = models.CharField(max_length=100)
-#     project_description = models.TextField()
-#     date = models.DateField(auto_now_add=True)
-#     project_id = models.IntegerField(null=True, blank=True)
+class Project(models.Model):
+    project_title = models.CharField(max_length=100)
+    project_description = models.TextField()
+    date = models.DateField(auto_now_add=True)
+    project_id = models.IntegerField(null=True, blank=True)
 
-#     class Meta:
-#         verbose_name = ("project")
-#         verbose_name_plural = ("projects")
+    class Meta:
+        verbose_name = ("project")
+        verbose_name_plural = ("projects")
   
-#     def __str__(self):
-#         return self.project_title
+    def __str__(self):
+        return self.project_title
 
-#     def get_absolute_url(self):
-#         return reverse("project_detail", kwargs={"pk": self.pk})
+    def get_absolute_url(self):
+        return reverse("project_detail", kwargs={"pk": self.pk})
 
 
 #resume table
@@ -148,3 +148,15 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class SeekerDetail(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phno = models.IntegerField()
+    resume = models.FileField(upload_to="resume/")
+
+    def __str__(self):
+        return str(self.name)+ " details" 
+
+
